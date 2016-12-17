@@ -1,5 +1,7 @@
 package com.dominic.java8.typeinference;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -33,9 +35,12 @@ public class PaymentUtil<T> {
 	}
 	
 	public static <L,R,Z extends Payment> void doAction(final Map<L,Z> collection, Consumer<R> consumer,Function<Z, R> tranform){
-		collection.entrySet().stream().map(x -> x.getValue()).map(tranform).forEach(consumer);
-		
-		
+		collection.entrySet().stream().map(x -> x.getValue()).map(tranform).forEach(consumer);	
+	}
+	
+	public static <K> List<K> sortPayments(final Comparator<K> comparator, final List<K> collections){
+		Collections.sort(collections, comparator);
+		return collections;
 	}
 	
 
